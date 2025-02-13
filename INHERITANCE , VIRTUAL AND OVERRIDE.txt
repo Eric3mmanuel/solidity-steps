@@ -1,0 +1,45 @@
+//INHERITANCE , VIRTUAL AND OVERRIDE
+/*YOU CAN INHERIT THE FUNCTIONALITY OF A DIFFERENT CONTRACT USING "IS" 
+E.G contract AddFiveStorage is SimpleStorage 
+TO CHANGE THE FUNCTIONALITY OF AN INHERITED FUNCTION IN SOL ,WE USE 2 KEYWORDS
+1.VIRTUAL - TO MAKE A FUNCTION TO BE OVERRIDEABLE
+2.OVERRIDE- TO OVERRIDE A FUNCTION
+
+VIRTUAL IS PLACED IN THE PARENT CONTRACTS'S FUNCTION
+OVERRIDE IS PLACED IN THE CHILD CONTRACT'S FUNCTION
+E.G
+**PARENT CONTRACT
+function store(string memory _name ,uint256 _favoriteNumber) public virtual {
+        personsName = _name;
+        personsFavoriteNumber = _favoriteNumber;
+        
+    }
+**CHILD CONTRACT
+function store ( string memory _name,uint256 _favoritenumber) public override {
+        personsName = _name;
+        personsFavoriteNumber = _favoriteNumber +5;
+
+}
+
+}
+
+
+
+*/
+
+
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.19;
+
+import{SimpleStorage} from "./SimpleStorage.sol";
+
+contract AddFiveStorage is SimpleStorage {
+
+    function store ( string memory _name,uint256 _favoriteNumber)  public override {
+       personsName = _name;
+       personsFavoriteNumber = _favoriteNumber +5;
+}
+        
+}

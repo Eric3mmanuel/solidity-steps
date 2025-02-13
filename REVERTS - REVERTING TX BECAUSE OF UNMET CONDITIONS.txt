@@ -1,0 +1,28 @@
+//REVERTS 
+/*What is a REVERT
+A revert undoes any actions that have been done previously,and sends the remaining gas associated with that tx back
+In the example below ,since we had set a revert condition i.e if the sender doesnt send >1ETH the tx will revert ,then once the function is called ,any previous actions will be undone.
+e.g If sender sends <1ETH in the value section ,deploys the contract then calls the 'fund' function ,MyValue will not add +2 ,instead it will be reverted 
+
+*/
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
+
+
+
+contract FundMe {
+
+    uint256 public MyValue = 1;
+    function fund() public payable{
+
+        require(msg.value > 1e18 , "DIDNT SEND ENOUGH ETH");
+        MyValue= MyValue +2;
+
+    }
+    
+    function withdraw() public {
+
+    }
+    
+}

@@ -1,0 +1,48 @@
+//INTERACTING WITH ORACLES,INTERFACES TO GET REAL WORLD PRICE DATA
+/*Say for example you want users to send a value of 5$ minimum instead of 1 whole ether (1e18)
+We first begin by specifying the amount e.g uint256 MinAmount= 5;
+Then we set the require condition to require(msg.value >= MinUSDT ...)
+However ,msg.value is in terms of ethereum ,and MinUSDT is in terms of USD
+This brings us to the question ,how do we convert the amount in ETH to its price in dollars ($)?
+This is where the concept of blockchain oracles come into play
+**A Blockchain Oracle is a service that provides external data e.g from the real world ,to smart contracts 
+on a blockchain. Oracles are crucial for enabling smart contracts to interact with data outside of the blockchain network 
+,such as real world events ,APIs ,existing payment systems,or other off-chain information.
+Examples of oracles include CHAINLINK and BAND PROTOCOL
+CHAINLINK is a decentralised oracle network for bringing data and external computation into out smart contracts 
+CHAINLINK NETWORKS CAN BE COMPLETELY CUSTOMIZED TO BRING ANY DATA OR EXTERNAL COMPUTATION THAT YOU WANT ,AND ITS PLUG AND PLAY
+E.G Chainlink data feeds(url - https://data.chain.link) which works in a way that , a network of chainlink nodes gets data from various exchanges and data providers 
+and brings that data through a network of decentralised chainlink nodes .The chainlink nodes then use a medium to figure out what the actual price 
+of the asset is and then delivers that through a single transaction through a price feed or data contract on chain that other smart contracts can use 
+to power their De-Fi application.
+-We can gain access to a price feed or data feed contract at https://docs.chain.link
+-Select EVM Chain on the top bar
+-scroll down to datafeeds -using data feeds
+scroll down to solidity section
+**PRICE FEEDS are one of the most powerful features to add to your smart contracts especially for Decentralised Finance
+If looking for different addresses for different price feeds,you can check the contract addresses section (remember in order to interact 
+with a contract you need an Address and ABI.)
+**ALSO CHECK OUT CHAINLINK FUNCTIONS
+
+-Since blockchains are deterministic by design ,so as to bring all the nodes to reach a consensus.If we start adding variable data
+ or random data ,or values that return from API calls ,different nodes will get different results and thus never able to reach a consensus 
+ This is known as the smart contact connectivity issue 
+**
+This gives rise to hybrid smart contracts which combine on-chain and off chain to make feature rich applications 
+
+
+
+
+
+*/
+
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract fundme {
+    uint256 MinUSDT= 5;
+    function fund ()public payable {
+        require( msg.value  >= MinUSDT, "NOT ENOUGH FUNDS");
+    }
+}

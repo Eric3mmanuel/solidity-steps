@@ -1,0 +1,55 @@
+//MAPPINGS
+//say for example we have an array of 1000 people and we would like to identify someone in the list but we dont know their index number 
+//we can use MAPPINGS .
+//MAPPINGS HELP US TO REDUCE THE TIME REQUIRED IN IDENTIFYING DATA 
+
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+contract scpractice{
+
+    uint256 [] public list;//THIS ARRAY CAN ONLY STORE ONE DATA TYPE
+    struct person {//THIS STRUCT CAN STORE MULTIPLE DATA TYPES(handy in storing the data of multiple people)
+
+        string Name;
+        uint256 Number;
+       //THE ORDER AND SEQUENCE USED IN ASSIGNING VARIABLES IN THIS STRUCT SHOULD BE FOLLOWED 
+    }
+    person [] public listofpersons;
+    mapping (string => uint256) public NametoNumber;
+    //THIS POINTS A STRING TO A UINT256 NUMBER
+    //AFTER WRITING OUT THIS CODE,YOU CAN CALL IT INSIDE THE FUNCTION THAT YOU USED TO CREATE THE ARRAY OR STRUCT WITH
+    //E.G NametoNumber[Name]=Number;
+
+     function addpersons (string memory Name, uint256 Number) public {
+        listofpersons.push(person( Name,Number));//THIS ALLOWS ONE TO ADD A PERSONS NAME AND NUMBER TO THE LIST
+        NametoNumber[Name]=Number;//THIS IS THE FUNCTION CALL OF THE MAPPING
+    //AFTER DEPLOYING THE CONTRACT ,YOULL SEE A SECTION WRITTEN NametoNumber ON THE CONTRACT DATA
+    //YOU CAN JUST INPUT A STRING NAME WHICH WILL POINT YOU TO A NUMBER 
+
+    }    
+
+
+    
+    uint256 favnumber;
+    function store (uint256 _favnumber)public  {
+        favnumber=_favnumber +5 ;
+        retrieve();
+       
+        
+    }
+    function retrieve() public view  returns (uint256){
+        return favnumber;
+    }
+     
+
+    
+   
+        
+
+    
+
+    
+
+}

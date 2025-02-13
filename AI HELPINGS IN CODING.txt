@@ -1,0 +1,16 @@
+This is an excerpt explaining how we can use AI to help us in writing code 
+When interacting with AI we can help the AI to understand that this is a line of code by adding three dashes before the code e.g
+
+---
+contract FundMe {
+
+function Fund ()payable public {
+require (msg.value >= 1e18, " NOT ENOUGH FUNDS " );
+}
+---
+
+Some of the AI we use are
+1.CHATGPT
+2.PIRANHA 
+3.PHIND
+4.DEEPSEEK

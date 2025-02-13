@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.26;
+
+contract fundme {
+
+    function fund () public payable {
+
+        require(msg.value >= 1e18, "NOT ENOUGH ETH");
+
+    }
+     receive() external payable {
+        fund();
+     }
+
+    fallback() external payable { 
+       fund();
+    }
+
+    function getbalance (address ContractAddress) public view returns (uint){
+        return address(ContractAddress).balance;
+    }
+    function withdraw (address ) public {
+        payable( msg.sender ).transfer(address(this).balance);
+    }
+
+    //function to get ETH balance on the contract
+}

@@ -1,0 +1,77 @@
+//(MSG.SENDER) AND WITHDRAWING FUNDS FROM A CONTRACT
+
+/*(msg.sender) is a global variable used in solidity which refers to the address the account which is calling or interacting with a contract.
+It represents the "sender" of the message or transaction,which could be an externally owned acc (E.O.A) OR ANOTHER CONTRACT
+*/
+/*To WITHDRAW funds from a contract there are 3 ways in which one can do this 
+1.TRANSFER
+2.SEND 
+3.CALL
+*/
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
+
+
+
+contract FundMe {
+
+    uint256 public MyValue = 1;
+    address[] public funders;
+    // the array above keeps tab of those who send money to the contract
+    mapping (address funder=>uint256 amountfunded) public AddresstoAmountFunded;
+    // the mapping above keeps tab of the amount funded by each funder's address 
+   
+   
+   
+    function fund() public payable{
+
+        require(msg.value > 1e18 , "DIDNT SEND ENOUGH ETH");
+        funders.push(msg.sender);
+        //(msg.sender is a global variable in solidity which refers to whoever called the function(creator of the contract)
+       AddresstoAmountFunded[msg.sender] = AddresstoAmountFunded[msg.sender]+msg.value;
+       //the above code shows what happens if somebody funds our contract.
+
+    }
+    
+    function withdraw() public {
+        //When withdrawing funds from a contract were going to want to reset all mappings of addresses back to 0
+        //To do this were going to use something called a "for loop"
+        //A "for loop" is a way to loop through a list of sth or do sth in a repeated amount of time
+        /*for loop
+        [ 1. 2. 3]elements 
+          0, 1, 2  indexes
+          In a "for loop" ,you want to give it a starting index ,followed by an ending index , followed by the step amount
+          e.g
+          for(3;12;3)
+          This means the starting index is 3, ending index is 12 and step amount is 3,
+          the loop will go 3, 6, 9, 12 GEERRIITT MA BWOYY
+          */
+          for (uint FunderIndex=0;FundersIndex <Funders.length;FundersIndex++){
+            address funders=funders[FunderIndex];
+            //the array above loops through the addresses of those who send money to the contract
+            //Funderindex++ means everytime we go through the loop,itll move from one index to another
+            AddresstoAmountFunded[funders] =0 ;
+
+          }
+          funders = new address[](0);
+          //this resets the array "address[]funders;"
+
+          //TRANSFER
+          //If we want to transfer the funds to whomever is calling the withdraw function we would do the below actions.
+          //msg.sender.transfer(address(this).balance)
+          //the "this" keyword refers to the whole contract
+          //msg.sender is of address type
+          //payable(msg.sender ) is of type payable address
+          //in solidity in order to work with the native blockchain tokens ,we can only work with payable addresses  
+          payable msg.sender.transfer(address(this).balance )
+
+          
+
+          
+        
+
+    }
+    
+
+

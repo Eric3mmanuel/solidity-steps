@@ -1,0 +1,77 @@
+//ARRAYS AND STRUCTS
+//ARRAYS ARE A COMMON WAY OF GROUPING DATA 
+//THEY ARE ZERO INDEXED
+/*E.G 
+[1,2,3,4,5]-ELEMENTS
+0,1,2,3,4  -INDEX
+// STRUCTS (STRUCTURES IN FULL) ARE A WAY TO GROUP SEVERAL RELATED VARIABES INTO ONE PLACE
+//THE DIFFERENCE BETWEEN AN ARRAY AND A STRUCT IS THAT ,UNLIKE AN ARRAY , A STRUTURE(STRUCT) CAN CONTAIN MANY DATA TYPES E.G INT,BOOL,UINT ,ADDRESS ETC.
+//EACH VARIABLE IN THE STRUCTURE IS KNOWN AS A MEMBER OF THE STRUCTURE
+e.g struct person {
+        uint256 personsfavnumber;-member
+        string personsname;      -member
+    }
+//STRUCTS CREATE THEIR VARIABLES
+//NOW YOU CAN CREATE A NEW VARIABLE AND ITS OWN ARRAY - person[]   
+e.g person[] public personslist; 
+//WE HAVE 2 TYPES OF ARRAYS 
+i) STATIC ARRAYS - E.G person[3]
+ii)DYNAMIC ARRAYS -E.G person[] 
+
+*/
+
+
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+contract scpractice{
+
+    uint256 favnumber;
+    uint256 [] public list;//THIS ARRAY CAN ONLY STORE ONE DATA TYPE
+    struct person {//THIS STRUCT CAN STORE MULTIPLE DATA TYPES(handy in storing the data of multiple people)
+
+        string Name;
+        uint256 Number;
+       //THE ORDER AND SEQUENCE USED IN ASSIGNING VARIABLES IN THIS STRUCT SHOULD BE FOLLOWED 
+    }
+    person [] public listofpersons;
+    
+    function store (uint256 _favnumber)public  {
+        favnumber=_favnumber +5 ;
+        retrieve();
+       
+        
+    }
+
+
+    function retrieve() public view  returns (uint256){
+        return favnumber;
+    }
+     
+
+    //THE FUNCTION BELOW ADDS PEOPLE TO THE listofpersons ARRAY ABOVE
+    function addpersons (string memory Name, uint256 Number) public {
+        listofpersons.push(person( Name,Number));
+    //NB-THE ORDER USED WHEN CREATING THE STRUCT IS VERY IMPORTANT
+    /*NOW IF YOU WANNA ADD PERSONS TO THIS FUNCTION :
+    -COMPILE AND DEPLOY THE CONTRACT
+    -GO TO THE ADD PERSONS FUNCTIONS SECTION AND USING THE SEQUENCE OF NAME FOLLOWED BY NUMBER ,YOU CAN ADD A NAME AND ASSIGN A NUMBER TO IT
+    E.G FIRST 
+    ERIC,1000(then click add person)
+    SECOND
+    MONA,1000(then click add person)
+
+    -THEN ON THE LISTOFPERSONS SECTION YOU CAN ACCESS THE ELEMENT OF ERIC USING THE INDEX 0,BECAUSE ITS THE FIRST ELEMENT IN THE PERSONS ARRAYS AND ARRAYS ARE ZERO INDEXED.
+
+    */
+
+    }    
+
+        
+
+    
+
+    
+
+}

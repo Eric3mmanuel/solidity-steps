@@ -1,0 +1,53 @@
+// SPDX-License-Identifier: MIT
+pragma solidity  ^0.8.19;
+
+contract SimpleStorage {
+    uint256 myFavoriteNumber;
+
+    struct Person {
+        uint256 favoriteNumber;
+        string name;
+    }
+    // uint256[] public anArray;
+    Person[] public listOfPeople;
+
+    mapping(string => uint256) public nameToFavoriteNumber;
+
+    function store(uint256 _favoriteNumber) public virtual {
+        myFavoriteNumber = _favoriteNumber;
+    }
+
+    function retrieve() public view returns (uint256) {
+        return myFavoriteNumber;
+    }
+
+    function addPerson(string memory _name, uint256 _favoriteNumber) public {
+        listOfPeople.push(Person(_favoriteNumber, _name));
+        nameToFavoriteNumber[_name] = _favoriteNumber;
+    }
+}
+
+
+
+contract StorageFactory{
+
+    //remember when we input a data type in a contract?
+    //e.g uint256 public FavNo
+    //the syntax of saving that variable is type ,visibility, name
+    //we will do exactly that
+    //the type will be : SimpleStorage 
+    //this is because the same way in which a 'STRUCT ' keyword allows us to create a new type ,is the same way a 'CONTRACT ' keyword allows us to create a new type 
+    SimpleStorage public simpleStorage; 
+
+    function CreateSimpleStorageContract() public {
+    //the question is ,how does StorageFactory contract know how Simple Storage conract looks like?
+    //method1 : You can copy the contract code from the original contract and paste it on the other cpontract as done above
+    //You are allowed to have multiple contracts on the same file .(THOUGH THIS ISNT THE BEST PRACTICE)
+    //To avoid this you can use the 'IMPORT ' keyword to import anoher contract
+    //e.g import "./SimpleStorage.sol";
+
+    simpleStorage = new SimpleStorage();
+    // the 'new ' keyword is how solidity knows to deploy a contract.
+    }
+
+}
