@@ -1,4 +1,4 @@
-//MAPPINGS
+k//MAPPINGS
 //say for example we have an array of 1000 people and we would like to identify someone in the list but we dont know their index number 
 //we can use MAPPINGS .
 //MAPPINGS HELP US TO REDUCE THE TIME REQUIRED IN IDENTIFYING DATA 
